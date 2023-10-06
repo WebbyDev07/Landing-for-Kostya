@@ -42,7 +42,7 @@ function handleForm(e) {
 
 let PROJECT_ID = "7ggih58a";
 let DATASET_NAME = "production";
-let QUERY_TESTIMONIAL = `*[_type=="testimonials"]`;
+let QUERY_TESTIMONIAL = `*[_type=="testimonials"] | order(_createdAt desc)`;
 let URL_TESTIMONIAL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET_NAME}?query=${QUERY_TESTIMONIAL}`;
 
 fetch(URL_TESTIMONIAL)
@@ -100,7 +100,7 @@ fetch(URL_TESTIMONIAL)
     }
   });
 
-let QUERY_WORKS = `*[_type=="works"]`;
+let QUERY_WORKS = `*[_type=="works"] | order(_createdAt desc)`;
 let URL_WORKS = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET_NAME}?query=${QUERY_WORKS}`;
 fetch(URL_WORKS)
   .then((response) => response.json())
@@ -185,6 +185,11 @@ fetch(URL_WORKS)
         // Додаємо комбо клас "reverse-recent-work-div" кожному другому елементу
         if (index % 2 === 1) {
           recentWorkDiv.classList.add("reverse-recent-work-div");
+          projectTextDivider.classList.add("reverse-project-text-divider");
+          projectDescriptionText.classList.add("reverse-project-description-text");
+          workDescriptionDiv.classList.add("reverse-work-descreiption-div");
+        descriptionTextDiv.classList.add("reverse-description-div");
+
         }
       
         // Додаємо основний контейнер до DOM
